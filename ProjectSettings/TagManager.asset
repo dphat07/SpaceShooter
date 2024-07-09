@@ -14,6 +14,8 @@ TagManager:
   - Coin
   - PlayerRay
   - Rocket
+  - PlayerBullet
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
