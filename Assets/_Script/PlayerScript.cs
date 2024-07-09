@@ -9,7 +9,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject explosion;
     public PlayerHealthBar playerHealthBar;
     public GameObject damageEffect;
-    //public CoinCount coinCount;
+    public CoinCount coinCount;
+    public ShootingPlayer shootingPlayer;
     //public GameCotroller gameCotroller;
 
 
@@ -71,12 +72,19 @@ public class PlayerScript : MonoBehaviour
                 
             }
 
-            if (collision.gameObject.tag == "Coin")
-            {
-                //audioSource.PlayOneShot(coinSound, 0.5f);
-                //coinCount.AddCount();
-                Destroy(collision.gameObject);
-            }
+         
+        }
+        if (collision.gameObject.tag == "Coin")
+        {
+            //audioSource.PlayOneShot(coinSound, 0.5f);
+            coinCount.AddCount();
+            Destroy(collision.gameObject);
+        }
+
+        if(collision.gameObject.tag == "Item")
+        {
+            shootingPlayer.GetItemShooting();
+            Destroy(collision.gameObject);
         }
     }
 

@@ -16,6 +16,7 @@ TagManager:
   - Rocket
   - PlayerBullet
   - EnemyBullet
+  - Item
   layers:
   - Default
   - TransparentFX
