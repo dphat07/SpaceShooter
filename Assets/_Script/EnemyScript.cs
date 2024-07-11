@@ -12,6 +12,7 @@ public class EnemyScript : MonoBehaviour
     public HealthBar healthBar;
     public GameObject damageEffect;
     public GameObject coinPrefab;
+    public float speed = 5f;
 
     public float enemyBulletSpawnTime = 1f;
 
@@ -31,7 +32,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate (Vector2.down * speed * Time.deltaTime);
     }
 
     void DamageHealthBar()

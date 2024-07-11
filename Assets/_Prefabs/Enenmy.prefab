@@ -219,6 +219,7 @@ MonoBehaviour:
     type: 3}
   coinPrefab: {fileID: 5849088503677862235, guid: fbb057c634591fb4c816b0a2c43e4053,
     type: 3}
+  speed: 0.5
   enemyBulletSpawnTime: 1
   health: 10
 --- !u!58 &6210039404541546624

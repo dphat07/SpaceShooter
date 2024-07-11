@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class ShootingPlayer : MonoBehaviour
 {
-    public GameObject playerBullet;
+    public GameObject bulletRed;
+    public GameObject bulletBlue;
     public Transform[] spawnPoint;
-    public GameObject item;
- 
+    //public GameObject item;
+
+    private int bulletType = 0;
 
     public GameObject flash;
     public float bulletSpawnTime = 1f;
@@ -32,7 +34,14 @@ public class ShootingPlayer : MonoBehaviour
        {
             if (spawnPoint[i].gameObject.activeSelf)
             {
-                Instantiate(playerBullet, spawnPoint[i].transform.position, Quaternion.identity);
+                if (bulletType == 0)
+                {
+                    Instantiate(bulletRed, spawnPoint[i].transform.position, Quaternion.identity);
+                }
+                else if (bulletType == 1)
+                {
+                    Instantiate(bulletBlue, spawnPoint[i].transform.position, Quaternion.identity);
+                }    
 
             }
        }
@@ -65,6 +74,9 @@ public class ShootingPlayer : MonoBehaviour
         {
             spawnPoint[2].gameObject.SetActive(true);
         }
+        else
+            bulletType = 1;
+
         countShooting++;
     }
 
