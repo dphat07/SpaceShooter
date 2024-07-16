@@ -282,7 +282,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 69126917}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 289362395}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: NextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &69126917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,10 +1156,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498011440ee5eff48843f39485058c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6210039404541546634, guid: 1cf5debdee7071e4b833de2d80bd0b1b, type: 3}
+  enemy:
+  - {fileID: 6210039404541546634, guid: 1cf5debdee7071e4b833de2d80bd0b1b, type: 3}
+  - {fileID: 7651434548688867163, guid: 1918953add5da984bbc2c2f15c2ef642, type: 3}
   respawnTime: 5
   gameController: {fileID: 131099142}
-  enemyCount: 1
+  enemyCount: 5
 --- !u!4 &292913365
 Transform:
   m_ObjectHideFlags: 0
@@ -1878,7 +1892,7 @@ MonoBehaviour:
   - {fileID: 92981674}
   - {fileID: 468518033}
   flash: {fileID: 2069293537}
-  bulletSpawnTime: 1
+  bulletSpawnTime: 0.5
 --- !u!1 &593953316
 GameObject:
   m_ObjectHideFlags: 0

@@ -112,7 +112,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (health > 0)
         {
-            health = Mathf.Min(health + 1, 20f);
+            health = Mathf.Min(health + 4, 20f);
             barFillAmount = health / 20f;
             playerHealthBar.SetAmount(barFillAmount);
             Debug.Log("up healbar");

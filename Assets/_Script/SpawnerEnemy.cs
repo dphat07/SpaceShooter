@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnerEnemy : MonoBehaviour
 {
 
-    public GameObject enemy;
+    public GameObject[] enemy;
     public float respawnTime = 5f;
     public GameController gameController;
     public int enemyCount = 10;
@@ -20,7 +20,7 @@ public class SpawnerEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lastEnemySpawned && FindObjectOfType<EnemyScript>() == null)
+        if (lastEnemySpawned && FindObjectOfType<EnemyScript>() == null && FindObjectOfType<BossScript>() == null)
         {
             StartCoroutine(gameController.LevelComplete());
         }
@@ -38,7 +38,8 @@ public class SpawnerEnemy : MonoBehaviour
 
     void SpawnEnemy()
     {
+        int randomValue = Random.Range(0, enemy.Length);
         int randomXpos = Random.Range(-7, 7);
-        Instantiate(enemy, new Vector2(randomXpos, transform.position.y), Quaternion.identity);
+        Instantiate(enemy[randomValue], new Vector2(randomXpos, transform.position.y), Quaternion.identity);
     }
 }
