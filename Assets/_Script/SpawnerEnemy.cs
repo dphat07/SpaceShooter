@@ -7,6 +7,10 @@ public class SpawnerEnemy : MonoBehaviour
 
     public GameObject enemy;
     public float respawnTime = 5f;
+    public GameController gameController;
+    public int enemyCount = 10;
+
+    private bool lastEnemySpawned = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +20,20 @@ public class SpawnerEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (lastEnemySpawned && FindObjectOfType<EnemyScript>() == null)
+        {
+            StartCoroutine(gameController.LevelComplete());
+        }
     }
     IEnumerator EnemySpawner()
     {
-        while (true)
+        for (int i = 0; i < enemyCount; i++)
         {
             yield return new WaitForSeconds(respawnTime);
             SpawnEnemy();
         }
+        lastEnemySpawned = true;   
+       
     }
 
     void SpawnEnemy()

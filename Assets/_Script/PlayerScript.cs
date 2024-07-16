@@ -11,7 +11,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject damageEffect;
     public CoinCount coinCount;
     public ShootingPlayer shootingPlayer;
-    //public GameCotroller gameCotroller;
+    public GameController gameCotroller;
 
 
     float minX;
@@ -23,12 +23,15 @@ public class PlayerScript : MonoBehaviour
     public float health = 20f;
     float barFillAmount = 1f;
     float damage = 0;
+   
 
     // Start is called before the first frame update
     void Start()
     {
         FindBoundaries();
         damage = barFillAmount / health;
+        Debug.Log(damage);
+        Debug.Log(health);
     }
 
     // Update is called once per frame
@@ -65,7 +68,7 @@ public class PlayerScript : MonoBehaviour
             if (health <= 0)
             {
                 //    AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, 0.5f);
-                //    //gameCotroller.GameOver();
+                gameCotroller.GameOver();
                 Destroy(gameObject);
                 GameObject playerExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
                 Destroy(playerExplosion, 0.8f);
@@ -86,6 +89,11 @@ public class PlayerScript : MonoBehaviour
             shootingPlayer.GetItemShooting();
             Destroy(collision.gameObject);
         }
+        if(collision.gameObject.tag == "HealthPoint")
+        {
+            AddPlayerHealthPoint();
+            Destroy(collision.gameObject);
+        }
     }
 
     void DamagePlayerHealthBar()
@@ -97,6 +105,17 @@ public class PlayerScript : MonoBehaviour
             playerHealthBar.SetAmount(barFillAmount);
             Debug.Log("down healbar");
            
+        }
+    }
+
+    void AddPlayerHealthPoint()
+    {
+        if (health > 0)
+        {
+            health = Mathf.Min(health + 1, 20f);
+            barFillAmount = health / 20f;
+            playerHealthBar.SetAmount(barFillAmount);
+            Debug.Log("up healbar");
         }
     }
         
