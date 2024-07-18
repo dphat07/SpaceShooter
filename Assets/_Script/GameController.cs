@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         endText.SetActive(false);
         pauseMenu.SetActive(false);
         pauseButton.SetActive(true);
@@ -45,9 +46,12 @@ public class GameController : MonoBehaviour
 
     public IEnumerator LevelComplete()
     {
+
         yield return new WaitForSeconds(2f);
-        endText.SetActive(true );
+        endText.SetActive(true);
         yield return new WaitForSeconds(3f);
+        Time.timeScale = 0f;
+        pauseButton.SetActive(false);
         levelComplete.SetActive(true);
     }
 

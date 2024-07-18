@@ -47,7 +47,7 @@ public class EnemyScript : MonoBehaviour
 
     void EnemyFire()
     {
-        //Instantiate(enemyBullet, gunPoint1.position, Quaternion.identity);
+        
         //Instantiate(enemyBullet, gunPoint2.position, Quaternion.identity);
 
         for (int i = 0; i < gunPoint.Length; i++)
