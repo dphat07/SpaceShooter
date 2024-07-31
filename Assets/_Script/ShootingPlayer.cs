@@ -16,6 +16,8 @@ public class ShootingPlayer : MonoBehaviour
     public float bulletSpawnTime = 1f;
 
     int countShooting = 1;
+
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +56,8 @@ public class ShootingPlayer : MonoBehaviour
         {
             yield return new WaitForSeconds(bulletSpawnTime);
             Fire();
-            //audioSource.Play();
+            
+            audioSource.Play();
             flash.SetActive(true);
             yield return new WaitForSeconds(0.04f);
             flash.SetActive(false);

@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     {
         pauseMenu.SetActive(true);
         pauseButton.SetActive(false);
+     
         Time.timeScale = 0f;
     }
 

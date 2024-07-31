@@ -23,7 +23,15 @@ public class PlayerScript : MonoBehaviour
     public float health = 20f;
     float barFillAmount = 1f;
     float damage = 0;
-   
+
+    public AudioSource audioSource;
+    public AudioClip damageSound;
+    public AudioClip explosionSound;
+    public AudioClip coinSound;
+    public AudioClip itemSound;
+    public AudioClip heartSound;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -60,14 +68,15 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.tag == "EnemyBullet")
         {
-            //audioSource.PlayOneShot(damageSound, 0.5f);
+            audioSource.PlayOneShot(damageSound, 0.5f);
+
             DamagePlayerHealthBar();
             Destroy(collision.gameObject);
             GameObject damageVFx = Instantiate(damageEffect, collision.transform.position, Quaternion.identity);
             Destroy(damageVFx, 0.05f);
             if (health <= 0)
             {
-                //    AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, 0.5f);
+                AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, 0.5f);
                 gameCotroller.GameOver();
                 Destroy(gameObject);
                 GameObject playerExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
@@ -79,18 +88,21 @@ public class PlayerScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "Coin")
         {
-            //audioSource.PlayOneShot(coinSound, 0.5f);
+           
+            audioSource.PlayOneShot(coinSound, 0.5f);
             coinCount.AddCount();
             Destroy(collision.gameObject);
         }
 
         if(collision.gameObject.tag == "Item")
         {
+            audioSource.PlayOneShot(itemSound, 0.5f);
             shootingPlayer.GetItemShooting();
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "HealthPoint")
         {
+            audioSource.PlayOneShot(heartSound, 0.5f);
             AddPlayerHealthPoint();
             Destroy(collision.gameObject);
         }

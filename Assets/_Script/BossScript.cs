@@ -22,6 +22,11 @@ public class BossScript : MonoBehaviour
     float damage = 0f;
     float barSize = 1f;
 
+    public AudioClip bulletSound;
+    public AudioClip damageSound;
+    public AudioClip explosionSound;
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +45,7 @@ public class BossScript : MonoBehaviour
     }
     void EnemyFire()
     {
-        //Instantiate(enemyBullet, gunPoint1.position, Quaternion.identity);
-        //Instantiate(enemyBullet, gunPoint2.position, Quaternion.identity);
+    
 
         for (int i = 0; i < gunPoint.Length; i++)
         {
@@ -55,7 +59,7 @@ public class BossScript : MonoBehaviour
         {
             yield return new WaitForSeconds(enemyBulletSpawnTime);
             EnemyFire();
-            //audioSource.PlayOneShot(bulletSound, 0.5f);
+            audioSource.PlayOneShot(bulletSound, 0.5f);
             enemyFlash.SetActive(true);
             yield return new WaitForSeconds(0.04f);
             enemyFlash.SetActive(false);
@@ -77,14 +81,14 @@ public class BossScript : MonoBehaviour
     {
         if (collision.tag == "PlayerBullet")
         {
-            //audioSource.PlayOneShot(damageSound, 0.5f);
+            audioSource.PlayOneShot(damageSound, 0.5f);
             DamageHealthBar();
             Destroy(collision.gameObject);
             GameObject damageVFx = Instantiate(damageEffect, collision.transform.position, Quaternion.identity);
             Destroy(damageVFx, 0.05f);
             if (health <= 0)
             {
-                //AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, 0.5f);
+                AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, 0.5f);
                 int coinCount = 10; // Số lượng coin muốn sinh ra
                 for (int i = 0; i < coinCount; i++)
                 {
